@@ -19,8 +19,29 @@
                 <a href="{{ route('admin.dashboard') }}" class="block px-4 py-2 rounded hover:bg-gray-100">🏠 Dashboard</a>
                 <a href="{{ route('admin.berita.index') }}" class="block px-4 py-2 rounded hover:bg-gray-100">📰 Berita</a>
                 <a href="{{ route('admin.events.index') }}"  class="block px-4 py-2 rounded hover:bg-gray-100">📅 Events</a>
-                <a href="#" class="block px-4 py-2 rounded hover:bg-gray-100">🖼️ Galeri</a>
-                <a href="#" class="block px-4 py-2 rounded hover:bg-gray-100">⚙️ Pengaturan</a>
+                <a href="{{ route('galeri.index') }}" class="block px-4 py-2 rounded hover:bg-gray-100">🖼️ Galeri</a>
+                    <!-- Dropdown Pengaturan -->
+                <div class="relative group">
+                    <button class="flex items-center w-full px-4 py-2 rounded hover:bg-gray-100">
+                        ⚙️ <span class="ml-2">Pengaturan</span>
+                    </button>
+
+                    <!-- Menu dropdown -->
+                    <div class="absolute left-full top-0 mt-0 hidden group-hover:block bg-white border rounded shadow-md w-40 z-10">
+                        <a href="/profile" class="block px-4 py-2 hover:bg-gray-100">👤 Profil</a>
+
+                        <!-- Logout -->
+                        <a href="#" 
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                        class="block px-4 py-2 text-red-600 hover:bg-gray-100">
+                            🚪 Logout
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                            @csrf
+                        </form>
+                    </div>
+                </div>
             </nav>
         </aside>
 

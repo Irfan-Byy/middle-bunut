@@ -7,6 +7,7 @@ use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\Admin\BeritaAdminController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\Admin\EventAdminController;
+use App\Http\Controllers\GaleriController;
 
 
 Route::get('/', [PublicController::class, 'home'])->name('home');
@@ -15,7 +16,7 @@ Route::get('/about', [PublicController::class, 'about'])->name('about');
 Route::get('/contact', [PublicController::class, 'contact'])->name('contact');
 Route::get('/events', [EventController::class, 'publicIndex'])->name('events.index');
 Route::get('/news', [PublicController::class, 'news'])->name('news.index');
-
+Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri.index');
 
 
 

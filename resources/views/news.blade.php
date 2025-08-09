@@ -33,25 +33,39 @@
     
     <section aria-label="News articles" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl">
     @foreach ($berita as $item)
-        <article class="flex flex-col space-y-3">
-            @if($item->gambar)
-                <img 
-                    src="{{ asset('storage/' . $item->gambar) }}" 
-                    alt="{{ $item->judul }}" 
-                    class="rounded-lg object-cover w-full h-[180px]" 
-                    height="180"
-                />
-            @endif
-            <div class="flex flex-col space-y-1">
-                <h2 class="text-sm font-normal leading-tight">
-                    {{ $item->judul }}
-                </h2>
-                <p class="text-xs text-[#475569] leading-snug">
-                    {{ Str::limit(strip_tags($item->isi), 150) }}
-                </p>
+    <div class="bg-white rounded-lg shadow p-4">
+        @if ($item->gambar)
+            <img 
+                src="{{ asset('storage/' . $item->gambar) }}" 
+                alt="{{ $item->judul }}" 
+                class="rounded-lg mb-3 h-[180px] object-cover w-full cursor-pointer"
+                data-bs-toggle="modal"
+                data-bs-target="#modal{{ $item->id }}"
+            >
+        @endif
+        <h3 class="font-semibold text-lg mb-1">{{ $item->judul }}</h3>
+        <p class="text-sm text-gray-600 line-clamp-3">{{ Str::limit($item->isi, 100) }}</p>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal{{ $item->id }}" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ $item->judul }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    @if ($item->gambar)
+                        <img src="{{ asset('storage/' . $item->gambar) }}" class="img-fluid mb-3">
+                    @endif
+                    <p>{{ $item->isi }}</p>
+                </div>
             </div>
-        </article>
-    @endforeach
+        </div>
+    </div>
+@endforeach
+
 </section>
 
 </div>
